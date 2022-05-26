@@ -1,0 +1,322 @@
+./Configuration.h:#define LINEAR_AXES 5  // EC : change the number of axes that are not used for extruders
+./Configuration.h:#if LINEAR_AXES >= 4
+./Configuration.h:#if LINEAR_AXES >= 5
+./Configuration.h:#if LINEAR_AXES >= 6
+./Configuration_adv.h:   * stepper motor (I axis, see option LINEAR_AXES in Configuration.h) to drive the tool-changer.
+./src/pins/pins_postprocess.h:#if LINEAR_AXES >= 4
+./src/pins/pins_postprocess.h:#if LINEAR_AXES >= 5
+./src/pins/pins_postprocess.h:#if LINEAR_AXES >= 6
+./src/pins/pins_postprocess.h:#if LINEAR_AXES >= 4 && !defined(I_DIAG_PIN) && !defined(I_STEP_PIN) && !PIN_EXISTS(I_CS_PIN)
+./src/pins/pins_postprocess.h:#if LINEAR_AXES >= 4
+./src/pins/pins_postprocess.h:#if LINEAR_AXES >= 5 && !defined(J_DIAG_PIN) && !defined(J_STEP_PIN) && !PIN_EXISTS(J_CS_PIN)
+./src/pins/pins_postprocess.h:#if LINEAR_AXES >= 5
+./src/pins/pins_postprocess.h:#if LINEAR_AXES >= 6
+./src/pins/sensitive_pins.h:#if LINEAR_AXES >= 4
+./src/pins/sensitive_pins.h:#if LINEAR_AXES >= 5
+./src/pins/sensitive_pins.h:#if LINEAR_AXES >= 6
+./src/inc/Conditionals_adv.h:#if LINEAR_AXES < 6
+./src/inc/Conditionals_adv.h:  #if LINEAR_AXES < 5
+./src/inc/Conditionals_adv.h:    #if LINEAR_AXES < 4
+./src/inc/Conditionals_adv.h:      #if LINEAR_AXES < 3
+./src/inc/Conditionals_adv.h:        #if LINEAR_AXES < 2
+./src/inc/Conditionals_LCD.h:#ifndef LINEAR_AXES
+./src/inc/Conditionals_LCD.h:  #define LINEAR_AXES XYZ
+./src/inc/Conditionals_LCD.h:#if LINEAR_AXES >= XY
+./src/inc/Conditionals_LCD.h:  #if LINEAR_AXES >= XYZ
+./src/inc/Conditionals_LCD.h:  #define LOGICAL_AXES INCREMENT(LINEAR_AXES)
+./src/inc/Conditionals_LCD.h:  #define LOGICAL_AXES LINEAR_AXES
+./src/inc/Conditionals_LCD.h:  #define DISTINCT_AXES (LINEAR_AXES + E_STEPPERS)
+./src/inc/Conditionals_LCD.h:#if LINEAR_AXES >= 4 && !defined(INVERT_I_DIR)
+./src/inc/Conditionals_LCD.h:#if LINEAR_AXES >= 5 && !defined(INVERT_J_DIR)
+./src/inc/Conditionals_LCD.h:#if LINEAR_AXES >= 6 && !defined(INVERT_K_DIR)
+./src/inc/SanityCheck.h:#define _LINEAR_AXES_STR LINEAR_AXIS_GANG("X ", "Y ", "Z ", "I ", "J ", "K ")
+./src/inc/SanityCheck.h: * Features that require a min/max/specific LINEAR_AXES
+./src/inc/SanityCheck.h:  #error "CNC_WORKSPACE_PLANES currently requires LINEAR_AXES >= 3"
+./src/inc/SanityCheck.h:#elif ENABLED(DIRECT_STEPPING) && LINEAR_AXES > XYZ
+./src/inc/SanityCheck.h:  #error "DIRECT_STEPPING currently requires LINEAR_AXES 3"
+./src/inc/SanityCheck.h:#elif ENABLED(FOAMCUTTER_XYUV) && LINEAR_AXES < 5
+./src/inc/SanityCheck.h:  #error "FOAMCUTTER_XYUV requires LINEAR_AXES >= 5."
+./src/inc/SanityCheck.h:#if LINEAR_AXES >= 4
+./src/inc/SanityCheck.h:    #error "I_MIN_POS and I_MAX_POS are required with LINEAR_AXES >= 4."
+./src/inc/SanityCheck.h:    #error "I_HOME_DIR is required with LINEAR_AXES >= 4."
+./src/inc/SanityCheck.h:    #error "I_ENABLE_ON is required for your I driver with LINEAR_AXES >= 4."
+./src/inc/SanityCheck.h:#if LINEAR_AXES >= 5
+./src/inc/SanityCheck.h:    #error "J_MIN_POS and J_MAX_POS are required with LINEAR_AXES >= 5."
+./src/inc/SanityCheck.h:    #error "J_HOME_DIR is required with LINEAR_AXES >= 5."
+./src/inc/SanityCheck.h:    #error "J_ENABLE_ON is required for your J driver with LINEAR_AXES >= 5."
+./src/inc/SanityCheck.h:#if LINEAR_AXES >= 6
+./src/inc/SanityCheck.h:    #error "K_MIN_POS and K_MAX_POS are required with LINEAR_AXES >= 6."
+./src/inc/SanityCheck.h:    #error "K_HOME_DIR is required with LINEAR_AXES >= 6."
+./src/inc/SanityCheck.h:    #error "K_ENABLE_ON is required for your K driver with LINEAR_AXES >= 6."
+./src/inc/SanityCheck.h:  static_assert(COUNT(hbm) == LINEAR_AXES, "HOMING_BUMP_MM must have " _LINEAR_AXES_STR "elements (and no others).");
+./src/inc/SanityCheck.h:  static_assert(COUNT(hbd) == LINEAR_AXES, "HOMING_BUMP_DIVISOR must have " _LINEAR_AXES_STR "elements (and no others).");
+./src/inc/SanityCheck.h:  static_assert(COUNT(hbp) == LINEAR_AXES, "HOMING_BACKOFF_POST_MM must have " _LINEAR_AXES_STR "elements (and no others).");
+./src/inc/SanityCheck.h:  static_assert(COUNT(sbm) == LINEAR_AXES, "SENSORLESS_BACKOFF_MM must have " _LINEAR_AXES_STR "elements (and no others).");
+./src/inc/SanityCheck.h:  #if LINEAR_AXES >= 4 && _AXIS_PLUG_UNUSED_TEST(I)
+./src/inc/SanityCheck.h:  #if LINEAR_AXES >= 5 && _AXIS_PLUG_UNUSED_TEST(J)
+./src/inc/SanityCheck.h:  #if LINEAR_AXES >= 6 && _AXIS_PLUG_UNUSED_TEST(K)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 4 && I_HOME_TO_MIN && DISABLED(USE_IMIN_PLUG)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 4 && I_HOME_TO_MAX && DISABLED(USE_IMAX_PLUG)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 5 && J_HOME_TO_MIN && DISABLED(USE_JMIN_PLUG)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 5 && J_HOME_TO_MAX && DISABLED(USE_JMAX_PLUG)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 6 && K_HOME_TO_MIN && DISABLED(USE_KMIN_PLUG)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 6 && K_HOME_TO_MAX && DISABLED(USE_KMAX_PLUG)
+./src/inc/SanityCheck.h:#elif LINEAR_AXES >= 4 && INVALID_TMC_UART(I)
+./src/inc/SanityCheck.h:#elif LINEAR_AXES >= 5 && INVALID_TMC_UART(J)
+./src/inc/SanityCheck.h:#elif LINEAR_AXES >= 6 && INVALID_TMC_UART(K)
+./src/inc/SanityCheck.h:#elif LINEAR_AXES >= 4 && !TMC_MICROSTEP_IS_VALID(I)
+./src/inc/SanityCheck.h:#elif LINEAR_AXES >= 5 && !TMC_MICROSTEP_IS_VALID(J)
+./src/inc/SanityCheck.h:#elif LINEAR_AXES >= 6 && !TMC_MICROSTEP_IS_VALID(K)
+./src/inc/SanityCheck.h:  #if LINEAR_AXES >= 4
+./src/inc/SanityCheck.h:  #if LINEAR_AXES >= 5
+./src/inc/SanityCheck.h:  #if LINEAR_AXES >= 6
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 4 && I_SENSORLESS && I_HOME_TO_MIN && DISABLED(ENDSTOPPULLUP_IMIN)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 4 && I_SENSORLESS && I_HOME_TO_MAX && DISABLED(ENDSTOPPULLUP_IMAX)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 5 && J_SENSORLESS && J_HOME_TO_MIN && DISABLED(ENDSTOPPULLUP_JMIN)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 5 && J_SENSORLESS && J_HOME_TO_MAX && DISABLED(ENDSTOPPULLUP_JMAX)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 6 && K_SENSORLESS && K_HOME_TO_MIN && DISABLED(ENDSTOPPULLUP_KMIN)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 6 && K_SENSORLESS && K_HOME_TO_MAX && DISABLED(ENDSTOPPULLUP_KMAX)
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 4 && I_SENSORLESS && I_HOME_TO_MIN && I_MIN_ENDSTOP_INVERTING != I_ENDSTOP_INVERTING
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 4 && I_SENSORLESS && I_HOME_TO_MAX && I_MAX_ENDSTOP_INVERTING != I_ENDSTOP_INVERTING
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 5 && J_SENSORLESS && J_HOME_TO_MIN && J_MIN_ENDSTOP_INVERTING != J_ENDSTOP_INVERTING
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 5 && J_SENSORLESS && J_HOME_TO_MAX && J_MAX_ENDSTOP_INVERTING != J_ENDSTOP_INVERTING
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 6 && K_SENSORLESS && K_HOME_TO_MIN && K_MIN_ENDSTOP_INVERTING != K_ENDSTOP_INVERTING
+./src/inc/SanityCheck.h:    #elif LINEAR_AXES >= 6 && K_SENSORLESS && K_HOME_TO_MAX && K_MAX_ENDSTOP_INVERTING != K_ENDSTOP_INVERTING
+./src/inc/SanityCheck.h:#if HAS_L64XX && LINEAR_AXES >= 4
+./src/inc/SanityCheck.h:  #error "L64XX requires LINEAR_AXES 3. Homing with L64XX is not yet implemented for LINEAR_AXES > 3."
+./src/inc/SanityCheck.h:  #define _EXTRA_NOTE " (Should be " STRINGIFY(LINEAR_AXES) "+" STRINGIFY(E_STEPPERS) ")"
+./src/inc/SanityCheck.h:static_assert(COUNT(sanity_arr_4) == LINEAR_AXES,  "HOMING_FEEDRATE_MM_M requires " _LINEAR_AXES_STR "elements (and no others).");
+./src/inc/SanityCheck.h:#if LINEAR_AXES >= 4
+./src/inc/SanityCheck.h:#if LINEAR_AXES >= 5
+./src/inc/SanityCheck.h:#if LINEAR_AXES >= 6
+./src/inc/SanityCheck.h:#undef _LINEAR_AXES_STR
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 4
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 5
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 6
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 4 && !defined(I_BED_SIZE)
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 5 && !defined(J_BED_SIZE)
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 6 && !defined(K_BED_SIZE)
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 4
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 5
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 6
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 4
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 5
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 6
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 4
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 5
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 6
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 4
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 5
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 6
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 4
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 5
+./src/inc/Conditionals_post.h:#if LINEAR_AXES >= 6
+./src/inc/Conditionals_post.h:    #if LINEAR_AXES >= 4
+./src/inc/Conditionals_post.h:    #if LINEAR_AXES >= 5
+./src/inc/Conditionals_post.h:    #if LINEAR_AXES >= 6
+./src/inc/Conditionals_post.h:  #if LINEAR_AXES >= 4 && !defined(I_INTERPOLATE)
+./src/inc/Conditionals_post.h:  #if LINEAR_AXES >= 5 && !defined(J_INTERPOLATE)
+./src/inc/Conditionals_post.h:  #if LINEAR_AXES >= 6 && !defined(K_INTERPOLATE)
+./src/core/types.h:#define LINEAR_AXIS_GANG(V...) GANG_N(LINEAR_AXES, V)
+./src/core/types.h:#define LINEAR_AXIS_CODE(V...) CODE_N(LINEAR_AXES, V)
+./src/core/types.h:#define LINEAR_AXIS_LIST(V...) LIST_N(LINEAR_AXES, V)
+./src/core/types.h:  #if LINEAR_AXES >= 2
+./src/core/types.h:  #if LINEAR_AXES >= 3
+./src/core/types.h:#define LOOP_LINEAR_AXES(VAR) LOOP_S_L_N(VAR, X_AXIS, LINEAR_AXES)
+./src/core/types.h:  #if LINEAR_AXES > XY
+./src/core/types.h:    FI void set(const T (&arr)[LINEAR_AXES])            { x = arr[0]; y = arr[1]; }
+./src/core/types.h:  #if LOGICAL_AXES > LINEAR_AXES
+./src/core/types.h:    T pos[LINEAR_AXES];
+./src/core/types.h:    FI void set(const T (&arr)[LINEAR_AXES])           { LINEAR_AXIS_CODE(x = arr[0], y = arr[1], z = arr[2], i = arr[3], j = arr[4], k = arr[5]); }
+./src/core/types.h:  #if LOGICAL_AXES > LINEAR_AXES
+./src/core/types.h:  #if LINEAR_AXES >= 4
+./src/core/types.h:  #if LINEAR_AXES >= 5
+./src/core/types.h:  #if LINEAR_AXES >= 6
+./src/core/types.h:  FI XYZval<T>& operator= (const T v)                  { set(ARRAY_N_1(LINEAR_AXES, v)); return *this; }
+./src/core/types.h:  #if LOGICAL_AXES > LINEAR_AXES
+./src/core/types.h:  #if LINEAR_AXES >= 4
+./src/core/types.h:  #if LINEAR_AXES >= 5
+./src/core/types.h:  #if LINEAR_AXES >= 6
+./src/core/types.h:  FI XYZEval<T>& operator= (const T v)                    { set(LIST_N_1(LINEAR_AXES, v)); return *this; }
+./src/core/language.h:#if LINEAR_AXES >= 4
+./src/core/language.h:#if LINEAR_AXES >= 5
+./src/core/language.h:#if LINEAR_AXES >= 6
+./src/core/serial.cpp:    LIST_N(DOUBLE(LINEAR_AXES), SP_X_STR, x, SP_Y_STR, y, SP_Z_STR, z, SP_I_STR, i, SP_J_STR, j, SP_K_STR, k)
+./src/core/utility.h:#if LINEAR_AXES <= XYZ
+./src/core/utility.cpp:          LOOP_LINEAR_AXES(a) {
+./src/module/stepper.cpp:#if LINEAR_AXES >= 4
+./src/module/stepper.cpp:#if LINEAR_AXES >= 5
+./src/module/stepper.cpp:#if LINEAR_AXES >= 6
+./src/module/stepper.cpp:      // TODO (DerAndere): Add support for LINEAR_AXES >= 4
+./src/module/stepper.cpp:        // TODO (DerAndere): Add support for LINEAR_AXES >= 4
+./src/module/stepper.cpp:    LIST_N(DOUBLE(LINEAR_AXES),
+./src/module/stepper.cpp:      #if LINEAR_AXES >= 4
+./src/module/stepper.cpp:      #if LINEAR_AXES >= 5
+./src/module/stepper.cpp:      #if LINEAR_AXES >= 6
+./src/module/tool_change.cpp:        //LOOP_LINEAR_AXES(i) update_software_endstops(i); // or modify the constrain function
+./src/module/stepper/indirection.h:#if LINEAR_AXES >= 4
+./src/module/stepper/indirection.h:#if LINEAR_AXES >= 5
+./src/module/stepper/indirection.h:#if LINEAR_AXES >= 6
+./src/module/stepper/indirection.h:#if LINEAR_AXES >= 4
+./src/module/stepper/indirection.h:#if LINEAR_AXES >= 5
+./src/module/stepper/indirection.h:#if LINEAR_AXES >= 6
+./src/module/stepper/trinamic.h:#if LINEAR_AXES >= 4 && !defined(CHOPPER_TIMING_I)
+./src/module/stepper/trinamic.h:#if LINEAR_AXES >= 5 && !defined(CHOPPER_TIMING_J)
+./src/module/stepper/trinamic.h:#if LINEAR_AXES >= 6 && !defined(CHOPPER_TIMING_K)
+./src/module/planner.cpp:      #if LINEAR_AXES >= 4
+./src/module/planner.cpp:      #if LINEAR_AXES >= 5
+./src/module/planner.cpp:      #if LINEAR_AXES >= 6
+./src/module/planner.cpp:    #if LINEAR_AXES >= 4
+./src/module/planner.cpp:    #if LINEAR_AXES >= 5
+./src/module/planner.cpp:    #if LINEAR_AXES >= 6
+./src/module/planner.cpp:    #if LINEAR_AXES >= 4
+./src/module/planner.cpp:    #if LINEAR_AXES >= 5
+./src/module/planner.cpp:    #if LINEAR_AXES >= 6
+./src/module/planner.cpp:          #if LINEAR_AXES >= 5
+./src/module/planner.cpp:    #if LINEAR_AXES >= 4
+./src/module/planner.cpp:    #if LINEAR_AXES >= 5
+./src/module/planner.cpp:    #if LINEAR_AXES >= 6
+./src/module/planner.cpp:  LOOP_LINEAR_AXES(i) {
+./src/module/planner.cpp:    TERN(HAS_LINEAR_E_JERK, LOOP_LINEAR_AXES, LOOP_LOGICAL_AXES)(i) {
+./src/module/planner.cpp:      TERN(HAS_LINEAR_E_JERK, LOOP_LINEAR_AXES, LOOP_LOGICAL_AXES)(axis) {
+./src/module/planner.cpp:    #if LINEAR_AXES >= ABC
+./src/module/planner.cpp:    #if LINEAR_AXES >= 4
+./src/module/planner.cpp:    #if LINEAR_AXES >= 5
+./src/module/planner.cpp:    #if LINEAR_AXES >= 6
+./src/module/motion.cpp:    LIST_N(DOUBLE(LINEAR_AXES),
+./src/module/motion.cpp:#if LINEAR_AXES >= 4
+./src/module/motion.cpp:#if LINEAR_AXES >= 5
+./src/module/motion.cpp:#if LINEAR_AXES >= 6
+./src/module/motion.cpp:    #if LINEAR_AXES >= 4
+./src/module/motion.cpp:    #if LINEAR_AXES >= 5
+./src/module/motion.cpp:    #if LINEAR_AXES >= 6
+./src/module/motion.cpp:          #if LINEAR_AXES >= 4
+./src/module/motion.cpp:          #if LINEAR_AXES >= 5
+./src/module/motion.cpp:          #if LINEAR_AXES >= 6
+./src/module/motion.cpp:          #if LINEAR_AXES >= 4
+./src/module/motion.cpp:          #if LINEAR_AXES >= 5
+./src/module/motion.cpp:          #if LINEAR_AXES >= 6
+./src/module/motion.cpp:          #if LINEAR_AXES >= 4
+./src/module/motion.cpp:          #if LINEAR_AXES >= 5
+./src/module/motion.cpp:          #if LINEAR_AXES >= 6
+./src/module/motion.h:  extern uint8_t saved_slots[(SAVED_POSITIONS + 7) >> 3]; // TODO: Add support for LINEAR_AXES >= 4
+./src/module/motion.h:          #if LINEAR_AXES >= 4
+./src/module/motion.h:          #if LINEAR_AXES >= 5
+./src/module/motion.h:          #if LINEAR_AXES >= 6
+./src/module/motion.h:#if LINEAR_AXES >= 4
+./src/module/motion.h:#if LINEAR_AXES >= 5
+./src/module/motion.h:#if LINEAR_AXES >= 6
+./src/module/motion.h:typedef IF<(LINEAR_AXES > 8), uint16_t, uint8_t>::type linear_axis_bits_t;
+./src/module/motion.h:constexpr linear_axis_bits_t linear_bits = _BV(LINEAR_AXES) - 1;
+./src/module/motion.h:#if LINEAR_AXES >= 4
+./src/module/motion.h:#if LINEAR_AXES >= 5
+./src/module/motion.h:#if LINEAR_AXES >= 6
+./src/module/scara.cpp:    LOOP_LINEAR_AXES(i) set_axis_is_at_home((AxisEnum)i);
+./src/module/stepper.h:#define ENABLE_COUNT (LINEAR_AXES + E_STEPPERS)
+./src/module/stepper.h:  constexpr ena_mask_t linear_bits() { return _BV(LINEAR_AXES) - 1; }
+./src/module/stepper.h:  constexpr ena_mask_t e_bits() { return (_BV(EXTRUDERS) - 1) << LINEAR_AXES; }
+./src/module/stepper.h:  return uint8_t(axis) + (E_TERN0(axis < LINEAR_AXES ? 0 : eindex));
+./src/module/stepper.h:  REPEAT(LINEAR_AXES, _OVERLAP)
+./src/module/stepper.h:        #define MOTOR_CURRENT_COUNT LINEAR_AXES
+./src/module/endstops.cpp:        F(S_FMT GANG_N_1(LINEAR_AXES, " %c") " %c"),
+./src/module/endstops.cpp:  #if LINEAR_AXES >= 4
+./src/module/endstops.cpp:  #if LINEAR_AXES >= 5
+./src/module/endstops.cpp:  #if LINEAR_AXES >= 6
+./src/module/settings.cpp:  uint8_t   esteppers;                                  // DISTINCT_AXES - LINEAR_AXES
+./src/module/settings.cpp:    #define MOTOR_CURRENT_COUNT LINEAR_AXES
+./src/module/settings.cpp:  LOOP_LINEAR_AXES(i) {
+./src/module/settings.cpp:    const uint8_t esteppers = COUNT(planner.settings.axis_steps_per_mm) - LINEAR_AXES;
+./src/module/settings.cpp:        uint32_t tmp1[LINEAR_AXES + esteppers];
+./src/module/settings.cpp:        float tmp2[LINEAR_AXES + esteppers];
+./src/module/settings.cpp:        feedRate_t tmp3[LINEAR_AXES + esteppers];
+./src/module/settings.cpp:          const bool in = (i < esteppers + LINEAR_AXES);
+./src/module/settings.cpp:    #if LINEAR_AXES >= 4 && !defined(DEFAULT_IJERK)
+./src/module/settings.cpp:    #if LINEAR_AXES >= 5 && !defined(DEFAULT_JJERK)
+./src/module/settings.cpp:    #if LINEAR_AXES >= 6 && !defined(DEFAULT_KJERK)
+./src/module/settings.cpp:    static_assert(COUNT(dpo) == LINEAR_AXES, "NOZZLE_TO_PROBE_OFFSET must contain offsets for each linear axis X, Y, Z....");
+./src/module/settings.cpp:      LOOP_LINEAR_AXES(a) probe.offset[a] = dpo[a];
+./src/libs/L64XX/L64XX_Marlin.cpp:    #if LINEAR_AXES >= 4
+./src/libs/L64XX/L64XX_Marlin.cpp:    #if LINEAR_AXES >= 5
+./src/libs/L64XX/L64XX_Marlin.cpp:    #if LINEAR_AXES >= 6
+./src/lcd/menu/menu_motion.cpp:#if LINEAR_AXES >= 4
+./src/lcd/menu/menu_motion.cpp:#if LINEAR_AXES >= 5
+./src/lcd/menu/menu_motion.cpp:#if LINEAR_AXES >= 6
+./src/lcd/menu/menu_motion.cpp:    #if LINEAR_AXES >= 4
+./src/lcd/menu/menu_motion.cpp:    #if LINEAR_AXES >= 5
+./src/lcd/menu/menu_motion.cpp:    #if LINEAR_AXES >= 6
+./src/lcd/menu/menu_motion.cpp:    #if LINEAR_AXES >= 4
+./src/lcd/menu/menu_motion.cpp:    #if LINEAR_AXES >= 5
+./src/lcd/menu/menu_motion.cpp:    #if LINEAR_AXES >= 6
+./src/lcd/menu/menu_motion.cpp:      #if LINEAR_AXES >= 4
+./src/lcd/menu/menu_motion.cpp:      #if LINEAR_AXES >= 5
+./src/lcd/menu/menu_motion.cpp:      #if LINEAR_AXES >= 6
+./src/lcd/menu/menu_backlash.cpp:  #if LINEAR_AXES >= 4 && _CAN_CALI(I)
+./src/lcd/menu/menu_backlash.cpp:  #if LINEAR_AXES >= 5 && _CAN_CALI(J)
+./src/lcd/menu/menu_backlash.cpp:  #if LINEAR_AXES >= 6 && _CAN_CALI(K)
+./src/lcd/extui/dgus_reloaded/DGUSTxHandler.cpp:  const bool motor_on = stepper.axis_enabled.bits & (_BV(LINEAR_AXES) - 1);
+./src/feature/backlash.cpp:  LOOP_LINEAR_AXES(axis) {
+./src/feature/powerloss.cpp:    LOOP_LINEAR_AXES(i) update_workspace_offset((AxisEnum)i);
+./src/feature/powerloss.cpp:          LOOP_LINEAR_AXES(i) {
+./src/feature/powerloss.cpp:          LOOP_LINEAR_AXES(i) {
+./src/feature/joystick.cpp:    LOOP_LINEAR_AXES(i) if (norm_jog[i]) {
+./src/feature/encoder_i2c.cpp:  LOOP_LINEAR_AXES(a) {
+./src/feature/encoder_i2c.cpp:  LOOP_LINEAR_AXES(a) {
+./src/gcode/host/M115.cpp:    #if LINEAR_AXES != XYZ
+./src/gcode/host/M115.cpp:      "AXIS_COUNT:" STRINGIFY(LINEAR_AXES) " "
+./src/gcode/host/M114.cpp:    LOOP_LINEAR_AXES(a) {
+./src/gcode/config/M92.cpp:  SERIAL_ECHOPGM_P(LIST_N(DOUBLE(LINEAR_AXES),
+./src/gcode/config/M200-M205.cpp:    LIST_N(DOUBLE(LINEAR_AXES),
+./src/gcode/config/M200-M205.cpp:    LIST_N(DOUBLE(LINEAR_AXES),
+./src/gcode/config/M200-M205.cpp:      , LIST_N(DOUBLE(LINEAR_AXES),
+./src/gcode/motion/G2_G3.cpp:#define ARC_LIJK_CODE(L,I,J,K)    CODE_N(SUB2(LINEAR_AXES),L,I,J,K)
+./src/gcode/motion/G2_G3.cpp:    GANG_N(SUB2(LINEAR_AXES),
+./src/gcode/motion/M290.cpp:    LOOP_LINEAR_AXES(a)
+./src/gcode/gcode.cpp:  LOOP_LINEAR_AXES(i) {
+./src/gcode/calibrate/G28.cpp:      LOOP_LINEAR_AXES(a) set_axis_is_at_home((AxisEnum)a);
+./src/gcode/calibrate/G28.cpp:    #if LINEAR_AXES >= 4
+./src/gcode/calibrate/G28.cpp:    #if LINEAR_AXES >= 5
+./src/gcode/calibrate/G28.cpp:    #if LINEAR_AXES >= 6
+./src/gcode/calibrate/M666.cpp:    LOOP_LINEAR_AXES(i) {
+./src/gcode/calibrate/G425.cpp:#if LINEAR_AXES >= 4 && BOTH(CALIBRATION_MEASURE_IMIN, CALIBRATION_MEASURE_IMAX)
+./src/gcode/calibrate/G425.cpp:#if LINEAR_AXES >= 5 && BOTH(CALIBRATION_MEASURE_JMIN, CALIBRATION_MEASURE_JMAX)
+./src/gcode/calibrate/G425.cpp:#if LINEAR_AXES >= 6 && BOTH(CALIBRATION_MEASURE_KMIN, CALIBRATION_MEASURE_KMAX)
+./src/gcode/calibrate/G425.cpp:  LIST_N(DOUBLE(SUB3(LINEAR_AXES)), IMINIMUM, IMAXIMUM, JMINIMUM, JMAXIMUM, KMINIMUM, KMAXIMUM)
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 2 && AXIS_CAN_CALIBRATE(Y)
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 4 && AXIS_CAN_CALIBRATE(I)
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 5 && AXIS_CAN_CALIBRATE(J)
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 6 && AXIS_CAN_CALIBRATE(K)
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 4
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 5
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 6
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 4 && AXIS_CAN_CALIBRATE(I)
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 5 && AXIS_CAN_CALIBRATE(J)
+./src/gcode/calibrate/G425.cpp:    #if LINEAR_AXES >= 6 && AXIS_CAN_CALIBRATE(K)
+./src/gcode/calibrate/M425.cpp:  LOOP_LINEAR_AXES(a) {
+./src/gcode/calibrate/M425.cpp:    LOOP_LINEAR_AXES(a) if (axis_can_calibrate(a)) {
+./src/gcode/calibrate/M425.cpp:        LOOP_LINEAR_AXES(a) if (axis_can_calibrate(a) && backlash.has_measurement(AxisEnum(a))) {
+./src/gcode/calibrate/M425.cpp:    , LIST_N(DOUBLE(LINEAR_AXES),
+./src/gcode/calibrate/G33.cpp:  LOOP_LINEAR_AXES(axis) {
+./src/gcode/calibrate/G33.cpp:          LOOP_LINEAR_AXES(axis) e_delta[axis] = +Z4(CEN);
+./src/gcode/calibrate/G33.cpp:        LOOP_LINEAR_AXES(axis) a_sum += delta_tower_angle_trim[axis];
+./src/gcode/calibrate/G33.cpp:        LOOP_LINEAR_AXES(axis) delta_tower_angle_trim[axis] -= a_sum / 3.0f;
+./src/gcode/calibrate/G33.cpp:      LOOP_LINEAR_AXES(axis) delta_endstop_adj[axis] -= z_temp;
+./src/gcode/feature/pause/G61.cpp:      LOOP_LINEAR_AXES(i) {
+./src/gcode/feature/trinamic/M911-M914.cpp:  #if LINEAR_AXES >= 2 && (M91x_USE(Y) || M91x_USE(Y2))
+./src/gcode/feature/trinamic/M911-M914.cpp:  #if LINEAR_AXES >= 4 && M91x_USE(I)
+./src/gcode/feature/trinamic/M911-M914.cpp:  #if LINEAR_AXES >= 5 && M91x_USE(J)
+./src/gcode/feature/trinamic/M911-M914.cpp:  #if LINEAR_AXES >= 6 && M91x_USE(K)
+./src/gcode/feature/trinamic/M911-M914.cpp:    LOOP_LINEAR_AXES(i) if (parser.seen(AXIS_CHAR(i))) {
+./src/gcode/geometry/G53-G59.cpp:  LOOP_LINEAR_AXES(i) {
+./src/gcode/geometry/M206_M428.cpp:  LOOP_LINEAR_AXES(i)
+./src/gcode/geometry/M206_M428.cpp:      LIST_N(DOUBLE(LINEAR_AXES),
+./src/gcode/geometry/M206_M428.cpp:  LOOP_LINEAR_AXES(i) {
+./src/gcode/geometry/M206_M428.cpp:  LOOP_LINEAR_AXES(i) set_home_offset((AxisEnum)i, diff[i]);
+./src/gcode/geometry/G92.cpp:        LOOP_LINEAR_AXES(i) if (position_shift[i]) {
+./src/gcode/control/M605.cpp:          LOOP_LINEAR_AXES(a) DEBUG_ECHOPGM("  hotend_offset[", e, "].", AS_CHAR(AXIS_CHAR(a) | 0x20), "=", hotend_offset[e][a]);
+./src/gcode/control/M17_M18_M84.cpp:  LOOP_LINEAR_AXES(a) {
+./src/gcode/control/M17_M18_M84.cpp:    LOOP_LINEAR_AXES(a) if (TEST(also_enabled, a)) SERIAL_CHAR(axis_codes[a], ' ');
+./src/gcode/control/M17_M18_M84.cpp:  LOOP_LINEAR_AXES(a)
+./src/gcode/control/M17_M18_M84.cpp:    LOOP_LINEAR_AXES(a) if (TEST(axis_bits, a)) SERIAL_CHAR(' ', axis_codes[a]);
+./src/gcode/control/M17_M18_M84.cpp:  LOOP_LINEAR_AXES(a) {
+./src/gcode/probe/G38.cpp:    LOOP_LINEAR_AXES(i) {
+./src/gcode/probe/G38.cpp:  LOOP_LINEAR_AXES(i)

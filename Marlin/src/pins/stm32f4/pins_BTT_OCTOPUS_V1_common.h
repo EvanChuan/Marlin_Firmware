@@ -28,7 +28,7 @@
 
 // Onboard I2C EEPROM
 #define I2C_EEPROM
-#define MARLIN_EEPROM_SIZE                0x1000  // 4KB (AT24C32)
+#define MARLIN_EEPROM_SIZE                0x8000  // 32KB (24C32A)
 #define I2C_SCL_PIN                         PB8
 #define I2C_SDA_PIN                         PB9
 
@@ -61,7 +61,11 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                   PB7
+  #if ENABLED(BLTOUCH)
+    #define Z_MIN_PROBE_PIN                 PB7
+  #else
+    #define Z_MIN_PROBE_PIN                 PC5   // Probe (Proximity switch) port
+  #endif
 #endif
 
 //
@@ -135,8 +139,17 @@
     #define Z_MAX_PIN                E2_DIAG_PIN  // PWRDET
   #endif
 #else
-  #define Z_STOP_PIN                  Z_DIAG_PIN  // Z-STOP
+  #ifdef USE_ZMAX_PLUG
+    #define Z_MAX_PIN                 Z2_DIAG_PIN // Z MAX-STOP  // EC: add additionally
+    #define Z_MIN_PIN                 Z_DIAG_PIN  // Z-STOP
+  #else
+    #define Z_STOP_PIN                  Z_DIAG_PIN  // Z-STOP
+  #endif
 #endif
+
+// EC : define the I and J MIN_PIN
+#define I_MIN_PIN 0
+#define J_MIN_PIN 0
 
 #undef NEEDS_X_MINMAX
 #undef NEEDS_Y_MINMAX
@@ -241,7 +254,7 @@
 #define HEATER_2_PIN                        PB10  // Heater2
 #define HEATER_3_PIN                        PB11  // Heater3
 
-#define FAN_PIN                             PA8   // Fan0
+//#define FAN_PIN                             PA8   // Fan0
 #define FAN1_PIN                            PE5   // Fan1
 #define FAN2_PIN                            PD12  // Fan2
 #define FAN3_PIN                            PD13  // Fan3
@@ -326,7 +339,7 @@
  * (LCD_EN) PE9  | 8  7 | PE10 (LCD_RS)       (BTN_EN1) PB2  | 8  7 | PA4  (SD_SS)
  * (LCD_D4) PE12   6  5 | PE13 (LCD_D5)       (BTN_EN2) PB1    6  5 | PA7  (MOSI)
  * (LCD_D6) PE14 | 4  3 | PE15 (LCD_D7)     (SD_DETECT) PC15 | 4  3 | RESET
- *           GND | 2  1 | 5V                             GND | 2  1 | --
+ *          GND  | 2  1 | 5V                            GND  | 2  1 | NC
  *                ------                                      ------
  *                 EXP1                                        EXP2
  */
@@ -375,14 +388,14 @@
 
 #if ENABLED(BTT_MOTOR_EXPANSION)
   /**
-   *         ------                  ------
-   * M3DIAG |10  9 | M3RX     M3STP |10  9 | M3DIR
-   * M2DIAG | 8  7 | M2RX     M2STP | 8  7 | M2DIR
-   * M1DIAG   6  5 | M1RX     M1DIR   6  5 | M1STP
-   *   M3EN | 4  3 | M2EN      M1EN | 4  3 | --
-   *    GND | 2  1 | --         GND | 2  1 | --
-   *        ------                   ------
-   *         EXP1                     EXP2
+   *         ------                        ------
+   *     NC | 1  2 | GND               NC | 1  2 | GND
+   *     NC | 3  4 | M1EN            M2EN | 3  4 | M3EN
+   *  M1STP | 5  6   M1DIR           M1RX | 5  6   M1DIAG
+   *  M2DIR | 7  8 | M2STP           M2RX | 7  8 | M2DIAG
+   *  M3DIR | 9 10 | M3STP           M3RX | 9 10 | M3DIAG
+   *         ------                        ------
+   *         EXP2                         EXP1
    */
 
   // M1 on Driver Expansion Module
@@ -530,9 +543,9 @@
  *  (ESP-CS) PB12 | 10 |       | 7 | PB15 (ESP-MOSI)
  *           3.3V | 11 |       | 6 | PB14 (ESP-MISO)
  * (ESP-IO0)  PD7 | 12 |       | 5 | PB13 (ESP-CLK)
- * (ESP-IO4) PD10 | 13 |       | 4 | --
- *             -- | 14 |       | 3 | PE15 (ESP-EN)
- *  (ESP-RX)  PD8 | 15 |       | 2 | --
+ * (ESP-IO4) PD10 | 13 |       | 4 | NC
+ *             NC | 14 |       | 3 | PE15 (ESP-EN)
+ *  (ESP-RX)  PD8 | 15 |       | 2 | NC
  *  (ESP-TX)  PD9 | 16 |       | 1 | PE14 (ESP-RST)
  *                      -------
  *                       WIFI
